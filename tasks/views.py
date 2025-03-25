@@ -12,3 +12,17 @@ class TaskCreateView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class TaskAssignView(APIView):
+    def post(self, request, pk):
+        task= get_object_or_404(Task, pk=pk)
+        users = request.data.get('users', [])
+        task.users.add(*users)
+        task.save()
+        return Response({'status':'users assigned'})
+
+class UserTaskView(APIView):
+    def get(self, request, user_id):
+        tasks=Task.objects.filter(users__id=user_id)
+        serializer=TaskSerializer(tasks, many=True)
+        return Response(serializer.data)        
