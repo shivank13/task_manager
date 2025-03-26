@@ -24,30 +24,30 @@ A Django-based RESTful API for managing tasks, including creation, assignment, a
    git clone https://github.com/shivank13/task_manager.git
    cd task-manager
 
-1. Create a virtual environment and activate it:
+2. **Create a virtual environment and activate it:**
     python -m venv env
     source env/bin/activate  # On Windows, use `env\Scripts\activate`
 
-2. Install dependencies:
+3. **Install dependencies:**
     pip install -r requirements.txt
 
-3. Run migrations:
+4. **Run migrations:**
     python manage.py makemigrations
     python manage.py migrate
 
-4. Create a superuser:
+5. **Create a superuser:**
     python manage.py createsuperuser
 
-5. Start the development server:
+6. **Start the development server:**
     python manage.py runserver
 
-6. Access the admin interface:
+7. **Access the admin interface:**
     Go to http://127.0.0.1:8000/admin/
     Log in using your superuser credentials.
 
 ## API Endpoints
 
-Create Task:
+**Create Task:**
 
 URL: api/tasks/create/
 Method: POST
@@ -70,7 +70,7 @@ Response: 201 Created
     "status": "pending"
 }
 
-Assign Task:
+**Assign Task:**
 
 URL: api/tasks/<int:pk>/assign/
 Method: POST
@@ -81,7 +81,7 @@ Body:
 Response: 200 OK
 {"status":"users assigned"}
 
-Get User Tasks:
+**Get User Tasks:**
 
 URL: api/tasks/user/<int:user_id>/
 Method: GET
