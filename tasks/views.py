@@ -6,6 +6,9 @@ from . serializers import TaskSerializer, UserSerializer
 from django.shortcuts import get_object_or_404
 
 class TaskCreateView(APIView):
+    """
+    API view to create a new task.
+    """
     def post(self, request):
         serializer = TaskSerializer(data = request.data)
         if serializer.is_valid():
@@ -14,6 +17,9 @@ class TaskCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class TaskAssignView(APIView):
+    """
+    API view to assign a task to users.
+    """
     def post(self, request, pk):
         task= get_object_or_404(Task, pk=pk)
         users = request.data.get('users', [])
@@ -22,6 +28,9 @@ class TaskAssignView(APIView):
         return Response({'status':'users assigned'})
 
 class UserTaskView(APIView):
+    """
+    API view to retrieve task for a specific user.
+    """
     def get(self, request, user_id):
         tasks=Task.objects.filter(users__id=user_id)
         serializer=TaskSerializer(tasks, many=True)
