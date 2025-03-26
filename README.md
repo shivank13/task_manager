@@ -25,25 +25,35 @@ A Django-based RESTful API for managing tasks, including creation, assignment, a
    cd task-manager
 
 2. **Create a virtual environment and activate it:**
+
+    ```bash
     python -m venv env
     source env/bin/activate  # On Windows, use `env\Scripts\activate`
 
 3. **Install dependencies:**
+
+    ```bash
     pip install -r requirements.txt
 
 4. **Run migrations:**
+
+    ```bash
     python manage.py makemigrations
     python manage.py migrate
 
 5. **Create a superuser:**
+
+    ```bash
     python manage.py createsuperuser
 
 6. **Start the development server:**
+
+    ```bash
     python manage.py runserver
 
 7. **Access the admin interface:**
-    Go to http://127.0.0.1:8000/admin/
-    Log in using your superuser credentials.
+    - Go to http://127.0.0.1:8000/admin/
+    - Log in using your superuser credentials.
 
 ## API Endpoints
 
@@ -51,14 +61,19 @@ A Django-based RESTful API for managing tasks, including creation, assignment, a
 
 URL: api/tasks/create/
 Method: POST
+
+
 Body:
+```bash
 {
     "name": "Task 1",
     "description": "Complete the documentation",
     "task_type":"Dev",
     "status":"pending"
 }
-Response: 201 Created    
+```
+Response: 201 Created  
+```bash  
 {
     "id": 4,
     "users": [],
@@ -69,15 +84,17 @@ Response: 201 Created
     "completed_at": null,
     "status": "pending"
 }
-
+```
 **Assign Task:**
 
 URL: api/tasks/<int:pk>/assign/
 Method: POST
+```bash
 Body:
 {
     "users": [1, 2]
 }
+```
 Response: 200 OK
 {"status":"users assigned"}
 
@@ -86,6 +103,7 @@ Response: 200 OK
 URL: api/tasks/user/<int:user_id>/
 Method: GET
 Response: 200 OK
+```bash
 [
     {
         "id": 1,
@@ -94,7 +112,7 @@ Response: 200 OK
         ...
     }
 ]
-
+```
 
 
 ## Test Credentials
